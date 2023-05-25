@@ -1,25 +1,31 @@
-'use client'
+"use client"
 
 import { AnimatePresence, motion } from "framer-motion"
 import useTabs from "../hooks/useTabs"
 import AboutMe from "./AboutMe"
 import Proyectos from "./Proyectos"
+import { Props } from "../type/type"
 
-const tabsData = [
-  {
-    label: "Sobre Mi",
-    content: <AboutMe />
-  },
-  {
-    label: "Proyectos",
-    content: <Proyectos /> 
-  }
-]
+export default function Main({ repos }: Props) {
 
-export default function Main() {
+  const tabsData = [
+    {
+      label: "Sobre Mi",
+      content: <AboutMe />,
+    },
+    {
+      label: "Proyectos",
+      content: <Proyectos repos={repos}/>,
+    },
+  ]
 
-  const {tabsRef, setActiveTabIndex, activeTabIndex, 
-    tabUnderlineLeft, tabUnderlineWidth } = useTabs()
+  const {
+    tabsRef,
+    setActiveTabIndex,
+    activeTabIndex,
+    tabUnderlineLeft,
+    tabUnderlineWidth,
+  } = useTabs()
 
   return (
     <div className="w-full">
@@ -31,7 +37,8 @@ export default function Main() {
                 key={idx}
                 ref={(el) => (tabsRef.current[idx] = el!)}
                 className="pt-2 pb-3 px-6"
-                onClick={() => setActiveTabIndex(idx)}>
+                onClick={() => setActiveTabIndex(idx)}
+              >
                 {tab.label}
               </button>
             )
@@ -46,16 +53,16 @@ export default function Main() {
       </div>
 
       <AnimatePresence mode="wait">
-          <motion.div
+        <motion.div
           key={activeTabIndex}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <p>{tabsData[activeTabIndex].content}</p>
-          </motion.div>
-        </AnimatePresence>
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div>{tabsData[activeTabIndex].content}</div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }

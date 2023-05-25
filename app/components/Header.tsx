@@ -23,16 +23,16 @@ const Header = () => {
 
       <div className="flex gap-2">
         <a href="https://www.linkedin.com/in/albertoferrandezmiralles/" target="_blank">
-          LINKEDIN <UseAnimations animation={linkedin} />
+          LINKEDIN <UseAnimations animation={linkedin} strokeColor={theme === 'light' ? 'black' : 'white'}/>
         </a>
         <a href="https://github.com/albertoferrandez" target="_blank">
-          GITHUB <UseAnimations animation={github} />
+          GITHUB <UseAnimations animation={github} strokeColor={theme === 'light' ? 'black' : 'white'}/>
         </a>
         <button onClick={toggleTheme}>
           {
             theme === "light" 
               ? <Image src={"/sun.svg"} alt="light-mode" width={20} height={20}/>
-              : <Image src={"/moon.svg"} alt="light-mode" width={20} height={20} />
+              : <Image src={"/moon.svg"} alt="dark-mode" width={20} height={20} />
           }
         </button>
       </div>

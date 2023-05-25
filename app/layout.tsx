@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <ThemeContextProvider>
         <body className={`${sofia.className} bg-slate-200 dark:bg-slate-800 
-        dark:text-slate-200 text-black`}>
+        dark:text-slate-200 text-slate-800`}>
           <Header />
           {children}
         </body>
